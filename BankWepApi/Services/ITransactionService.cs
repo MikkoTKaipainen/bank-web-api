@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BankWepApi.Models;
 
 namespace BankWepApi.Services
 {
-    public class ITransactionService
+    public interface ITransactionService
     {
-        // CRUD
-        
+        Transaction CreateTransaction(Transaction transaction);
+        List<Transaction> ReadTransactions();
+        List<Transaction> ReadTransaction(DateTime startdate, DateTime enddate);
+        Transaction ReadTransaction(int id);
     }
 }

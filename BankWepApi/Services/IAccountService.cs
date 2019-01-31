@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BankWepApi.Models;
 
 namespace BankWepApi.Services
 {
-    interface IAccountService
+    public interface IAccountService
     {
+        Account CreateAccount(Account account);
+        List<Account> ReadAccounts();
+        Account ReadAccount(string iban);
+        Account UpdateAccount(Account account, int id);
+        Account DeleteAccount(Account account, int id);
     }
 }
