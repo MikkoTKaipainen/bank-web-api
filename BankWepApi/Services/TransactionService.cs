@@ -3,29 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BankWepApi.Models;
+using BankWepApi.Repositories;
 
 namespace BankWepApi.Services
 {
     public class TransactionService : ITransactionService
     {
-        public Transaction CreateTransaction(Transaction transaction)
+        private readonly ITransactionRepository _transactionRepository;
+
+        public TransactionService(ITransactionRepository transactionRepository)
         {
-            throw new NotImplementedException();
+            _transactionRepository = transactionRepository;
         }
 
-        public List<Transaction> ReadTransaction(DateTime startdate, DateTime enddate)
+        public Transaction CreateTransaction(Transaction transaction)
         {
-            throw new NotImplementedException();
+            transaction.TimeStamp = DateTime.UtcNow;
+            return _transactionRepository.CreateTransaction(transaction);
         }
 
         public Transaction ReadTransaction(int id)
         {
-            throw new NotImplementedException();
+            return _transactionRepository.ReadTransaction(id);
         }
 
         public List<Transaction> ReadTransactions()
         {
-            throw new NotImplementedException();
+            return _transactionRepository.ReadTransactions();
+        }
+
+        public List<Transaction> ReadTransactions(DateTime startDate, DateTime endDate)
+        {
+            // Check if endDate is set to something other than empty
+            if (endDate == DateTime.MinValue)
+            {
+                endDate = DateTime.UtcNow;
+            }
+            return _transactionRepository.ReadTransactions(startDate, endDate);
         }
     }
 }
