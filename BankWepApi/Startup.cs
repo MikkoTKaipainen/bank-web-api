@@ -41,7 +41,8 @@ namespace BankWepApi
             services.AddScoped<IBankRepository, BankRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
 
-
+            // Connectionstring
+            services.AddDbContext<BackendbankdbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TimoDBContext")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
