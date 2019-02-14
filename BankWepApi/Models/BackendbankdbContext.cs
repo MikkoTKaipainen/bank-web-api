@@ -35,9 +35,7 @@ namespace BankWepApi.Models
 
             modelBuilder.Entity<Account>(entity =>
             {
-                entity.Property(e => e.IBAN)
-                    .IsUnicode(false)
-                    .ValueGeneratedNever();
+                entity.Property(e => e.IBAN).IsUnicode(false);
 
                 entity.Property(e => e.Name).IsUnicode(false);
 
@@ -77,11 +75,6 @@ namespace BankWepApi.Models
             modelBuilder.Entity<Transaction>(entity =>
             {
                 entity.Property(e => e.IBAN).IsUnicode(false);
-
-                entity.HasOne(d => d.IBANNavigation)
-                    .WithMany(p => p.Transaction)
-                    .HasForeignKey(d => d.IBAN)
-                    .HasConstraintName("FK_Transaction_Account");
             });
 
             OnModelCreatingPartial(modelBuilder);
