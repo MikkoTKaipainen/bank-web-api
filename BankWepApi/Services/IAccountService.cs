@@ -11,7 +11,7 @@ namespace BankWepApi.Services
         Account CreateAccount(Account account);
         List<Account> ReadAccounts();
         Account ReadAccount(long id);
-        Account UpdateAccount(Account account, long id);
-        Account DeleteAccount(Account account, long id);
+        Account UpdateAccount(long id, Account account);
+        Account DeleteAccount(long id, Account account);
     }
 }

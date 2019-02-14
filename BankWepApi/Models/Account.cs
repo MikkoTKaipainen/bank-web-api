@@ -25,5 +25,7 @@ namespace BankWepApi.Models
         [ForeignKey("CustomerId")]
         [InverseProperty("Account")]
         public virtual Customer Customer { get; set; }
+        [InverseProperty("Transaction")]
+        public virtual ICollection<Transaction> Transaction { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace BankWepApi.Services
             return _accountrepository.CreateAccount(account);
         }
 
-        public Account DeleteAccount(Account account, long id)
+        public Account DeleteAccount(long id, Account account)
         {
             throw new NotImplementedException();
         }
@@ -36,7 +36,7 @@ namespace BankWepApi.Services
             return _accountrepository.ReadAccounts();
         }
 
-        public Account UpdateAccount(Account account, long id)
+        public Account UpdateAccount(long id, Account account)
         {
             var updatedAccount = _accountrepository.ReadAccount(id);
             if (updatedAccount == null)
