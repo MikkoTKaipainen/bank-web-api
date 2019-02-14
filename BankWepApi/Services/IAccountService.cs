@@ -10,8 +10,8 @@ namespace BankWepApi.Services
     {
         Account CreateAccount(Account account);
         List<Account> ReadAccounts();
-        Account ReadAccount(string iban);
-        Account UpdateAccount(Account account, int id);
-        Account DeleteAccount(Account account, int id);
+        Account ReadAccount(long id);
+        Account UpdateAccount(Account account, long id);
+        Account DeleteAccount(Account account, long id);
     }
 }

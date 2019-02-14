@@ -15,9 +15,6 @@ namespace BankWepApi.Models
         public decimal Amount { get; set; }
         [Column(TypeName = "date")]
         public DateTime TimeStamp { get; set; }
-
-        [ForeignKey("IBAN")]
-        [InverseProperty("Transaction")]
-        public virtual Account IBANNavigation { get; set; }
+        public long AccountId { get; set; }
     }
 }
