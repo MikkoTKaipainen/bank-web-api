@@ -20,14 +20,14 @@ namespace BankWepApi.Models
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Transaction> Transaction { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=LAPTOP-OUF1ASIN\\SQLEXPRESS;Initial Catalog=BackendBankdb;Integrated Security=True");
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Data Source=DESKTOP-SODL96L\\SQLEXPRESS;Initial Catalog=BackendBankdb;Integrated Security=True");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -75,6 +75,11 @@ namespace BankWepApi.Models
             modelBuilder.Entity<Transaction>(entity =>
             {
                 entity.Property(e => e.IBAN).IsUnicode(false);
+
+                entity.HasOne(d => d.Account)
+                    .WithMany(p => p.Transaction)
+                    .HasForeignKey(d => d.AccountId)
+                    .HasConstraintName("FK_Transaction_Account");
             });
 
             OnModelCreatingPartial(modelBuilder);
