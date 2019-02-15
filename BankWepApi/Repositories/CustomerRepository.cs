@@ -50,7 +50,7 @@ namespace BankWepApi.Repositories
         {
             return _context.Customer
                .AsNoTracking()
-             .Include(a => a.Account)
+             //.Include(a => a.Account)
              .FirstOrDefault(p => p.Id == id);
         }
     //READ
