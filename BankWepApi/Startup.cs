@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using BankWepApi.Repositories;
+using BankWepApi.Models;
+using BankWepApi.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankWepApi
 {
@@ -25,6 +29,21 @@ namespace BankWepApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Services
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IBankService, BankService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ITransactionService, TransactionService>();
+
+            //Repositories
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IBankRepository, BankRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+
+            // Connectionstring
+            services.AddDbContext<BackendbankdbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TimoDBContext")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
