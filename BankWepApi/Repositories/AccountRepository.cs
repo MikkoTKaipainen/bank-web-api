@@ -31,10 +31,14 @@ namespace BankWepApi.Repositories
 
         public Account ReadAccount(long id)
         {
+            //return _context.Account
+            //    .AsNoTracking()
+            //    .Include(p => p.Transaction)
+            //    .FirstOrDefault(p => p.Id == id);
             return _context.Account
-                .AsNoTracking()
-                .Include(p => p.Transaction)
-                .FirstOrDefault(p => p.Id == id);
+                .Where(a => a.Id == id)
+                .Include(a => a.Transaction)
+                .FirstOrDefault(a => a.Id == id);
         }
 
         public Account UpdateAccount(Account account)
