@@ -56,11 +56,11 @@ namespace BankWepApi.Repositories
     //READ
         public List<Customer> ReadCustomers()
         {
-            //return _context.Customer.FromSql("Select * From Customer").ToList();
-            return _context.Customer
-                .Include(c => c.Bank)
-                .Include(a => a.Account)
-                .ToList();
+            return _context.Customer.FromSql("Select * From Customer").ToList();
+            //return _context.Customer
+            //    .Include(c => c.Bank)
+            //    .Include(a => a.Account)
+            //    .ToList();
         }
     //UPDATE
         public Customer UpdateCustomer(Customer customer)
