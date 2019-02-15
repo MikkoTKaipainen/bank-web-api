@@ -39,15 +39,17 @@ namespace BankWepApi.Controllers
         }
 
         // PUT: api/Banks/5
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPut]
+        public ActionResult<Bank> Put(Bank bank, int id)
         {
+            return _bankService.UpdateBank(bank, id);
         }
 
         // POST: api/Banks
         [HttpPost]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<Bank> Post(Bank bank)
         {
+            return _bankService.CreateBank(bank);
         }
 
         // DELETE: api/Banks/5
