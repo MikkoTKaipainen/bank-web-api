@@ -7,12 +7,8 @@ namespace BankWepApi.Models
 {
     public partial class Account
     {
-        public Account()
-        {
-            Transaction = new HashSet<Transaction>();
-        }
-
-        [Key]
+        public long Id { get; set; }
+        [Required]
         [StringLength(50)]
         public string IBAN { get; set; }
         [Required]
@@ -29,7 +25,7 @@ namespace BankWepApi.Models
         [ForeignKey("CustomerId")]
         [InverseProperty("Account")]
         public virtual Customer Customer { get; set; }
-        [InverseProperty("IBANNavigation")]
+        [InverseProperty("Transaction")]
         public virtual ICollection<Transaction> Transaction { get; set; }
     }
 }

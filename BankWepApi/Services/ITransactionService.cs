@@ -10,7 +10,7 @@ namespace BankWepApi.Services
     {
         Transaction CreateTransaction(Transaction transaction);
         List<Transaction> ReadTransactions();
-        List<Transaction> ReadTransaction(DateTime startdate, DateTime enddate);
+        List<Transaction> ReadTransactions(DateTime startdate, DateTime enddate);
         Transaction ReadTransaction(int id);
     }
 }
