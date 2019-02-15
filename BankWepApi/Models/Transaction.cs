@@ -13,8 +13,12 @@ namespace BankWepApi.Models
         public string IBAN { get; set; }
         [Column(TypeName = "decimal(18, 0)")]
         public decimal Amount { get; set; }
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime TimeStamp { get; set; }
         public long AccountId { get; set; }
+
+        [ForeignKey("AccountId")]
+        [InverseProperty("Transaction")]
+        public virtual Account Account { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace BankWepApi.Models
 {
@@ -24,6 +25,7 @@ namespace BankWepApi.Models
         [StringLength(50)]
         public string Psw { get; set; }
 
+        [IgnoreDataMember]
         [ForeignKey("BankId")]
         [InverseProperty("Customer")]
         public virtual Bank Bank { get; set; }

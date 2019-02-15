@@ -42,7 +42,11 @@ namespace BankWepApi
             services.AddScoped<ITransactionRepository, TransactionRepository>();
 
             // Connectionstring
-            services.AddDbContext<BackendbankdbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TimoDBContext")));
+            services.AddDbContext<BackendbankdbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("LocalBankDbContext")));
+
+            // JSON ignore serialization
+            services.AddMvc().AddJsonOptions(json =>
+               json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

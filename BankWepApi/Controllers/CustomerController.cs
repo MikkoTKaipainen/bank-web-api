@@ -40,17 +40,17 @@ namespace BankWepApi.Controllers
             return new JsonResult(_customerService.ReadCustomers());
         }
         // GET api/customer by id
-        [HttpGet]
+        [HttpGet("{id}")]
         public ActionResult<Customer> GetCustomer(int id)
         {
             return new JsonResult(_customerService.ReadCustomer(id));
         }
-        // GET api/customer by name
-        [HttpGet]
-        public ActionResult<List<Customer>> GetCustomer()
-        {
-            return new JsonResult(_customerService.ReadCustomers());
-        }
+        //// GET api/customer by name
+        //[HttpGet("{firstname?}/{lastname?}")]
+        //public ActionResult<List<Customer>> GetCustomer(string firstName, string lastName)
+        //{
+        //    return new JsonResult(_customerService.ReadCustomers(firstName, lastName));
+        //}
 
         // PUT api/customers/5
         [HttpPut("{id}")]
