@@ -24,8 +24,7 @@ namespace BankWepApi.Repositories
 
         public Bank DeleteBank(Bank bank)
         {
-            var deletedBank = ReadBank(id);
-            _context.Bank.Remove(deletedBank);
+            _context.Bank.Remove(bank);
             _context.SaveChanges();
             return bank;
         }
@@ -39,7 +38,9 @@ namespace BankWepApi.Repositories
 
         public List<Bank> ReadBank(string name)
         {
-            throw new NotImplementedException();
+            return _context.Bank
+                .Where(b => b.Name.Contains(name))
+                .ToList();
         }
 
         public List<Bank> ReadBanks()
