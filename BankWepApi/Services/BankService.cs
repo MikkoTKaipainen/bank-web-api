@@ -3,39 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BankWepApi.Models;
+using BankWepApi.Repositories;
 
 namespace BankWepApi.Services
 {
     public class BankService : IBankService
     {
+
+        private readonly IBankRepository _bankRepository;
+
+        public BankService(IBankRepository bankRepository)
+        {
+            _bankRepository = bankRepository;
+        }
+
         public Bank CreateBank(Bank bank)
         {
-            throw new NotImplementedException();
+            return _bankRepository.CreateBank(bank);
         }
 
         public Bank DeleteBank(Bank bank, int id)
         {
-            throw new NotImplementedException();
+            return _bankRepository.DeleteBank(bank);
         }
 
         public List<Bank> ReadBank(string name)
         {
-            throw new NotImplementedException();
+            return _bankRepository.ReadBank(name);
         }
 
         public Bank ReadBank(int id)
         {
-            throw new NotImplementedException();
+            return _bankRepository.ReadBank(id);
         }
 
         public List<Bank> ReadBanks()
         {
-            throw new NotImplementedException();
+            return _bankRepository.ReadBanks();
         }
 
         public Bank UpdateBank(Bank bank, int id)
         {
-            throw new NotImplementedException();
+            return _bankRepository.UpdateBank(bank);
         }
     }
 }
