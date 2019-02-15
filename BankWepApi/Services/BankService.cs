@@ -22,8 +22,9 @@ namespace BankWepApi.Services
             return _bankRepository.CreateBank(bank);
         }
 
-        public Bank DeleteBank(Bank bank, int id)
+        public Bank DeleteBank(int id)
         {
+            var bank = _bankRepository.ReadBank(id);
             return _bankRepository.DeleteBank(bank);
         }
 
@@ -44,7 +45,7 @@ namespace BankWepApi.Services
 
         public Bank UpdateBank(Bank bank, int id)
         {
-            return _bankRepository.UpdateBank(bank);
+            return _bankRepository.UpdateBank(bank,);
         }
     }
 }

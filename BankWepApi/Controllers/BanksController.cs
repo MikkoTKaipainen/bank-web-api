@@ -38,22 +38,32 @@ namespace BankWepApi.Controllers
             return new JsonResult(bank);
         }
 
-        // PUT: api/Banks/5
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("{name}")]
+        public ActionResult<Bank> Get(string name)
         {
+            var bank = _bankService.ReadBank(name);
+            return new JsonResult(bank);
+        }
+
+        // PUT: api/Banks/5
+        [HttpPut]
+        public ActionResult<Bank> Put(Bank bank, int id)
+        {
+            return new JsonResult(_bankService.UpdateBank(bank, id));
         }
 
         // POST: api/Banks
         [HttpPost]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<Bank> Post(Bank bank)
         {
+            return new JsonResult(_bankService.CreateBank(bank));
         }
 
         // DELETE: api/Banks/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            return new JsonResult(_bankService.DeleteBank(id));
         }
               
     }
