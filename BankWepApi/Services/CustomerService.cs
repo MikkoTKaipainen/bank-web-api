@@ -3,39 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BankWepApi.Models;
+using BankWepApi.Repositories;
+//using BankWepApi.Utilities;
+
 
 namespace BankWepApi.Services
 {
     public class CustomerService : ICustomerService
     {
+        private readonly ICustomerRepository _customerRepository;
+
+
+        public CustomerService(ICustomerRepository customerRepository)
+        {
+            _customerRepository = customerRepository;
+        }
+
+        //CREATE
         public Customer CreateCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            //customer.Psw = PswHash.HashPassword(customer.Psw, "salt");
+            return _customerRepository.CreateCustomer(customer);
         }
-
-        public Customer DeleteCustomer(Customer customer, int id)
+        //DELETE
+        public void DeleteCustomer(int id)
         {
-            throw new NotImplementedException();
+            
+             _customerRepository.DeleteCustomer(id);    
         }
-
+        //READ BY NAME //PITÄSKÖ LISÄTÄ FIRSTNAME LASTNAME?
         public List<Customer> ReadCustomer(string name)
         {
-            throw new NotImplementedException();
+            return _customerRepository.ReadCustomer(name);
         }
-
+        //READ BY ID
         public Customer ReadCustomer(int id)
         {
-            throw new NotImplementedException();
+            return _customerRepository.ReadCustomer(id);
         }
-
+        //READ
         public List<Customer> ReadCustomers()
         {
-            throw new NotImplementedException();
+            return _customerRepository.ReadCustomers();
         }
-
+        //UPDATE
         public Customer UpdateCustomer(Customer customer, int id)
         {
-            throw new NotImplementedException();
+            var updateCustomer = _customerRepository.ReadCustomer(id);
+            if (updateCustomer == null)
+                throw new Exception("Customer not found");
+            //customer.Psw = PswHash.HashPassword(customer.Psw, "salt");
+            return _customerRepository.UpdateCustomer(customer);
         }
     }
 }

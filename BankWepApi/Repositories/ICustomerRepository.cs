@@ -13,6 +13,6 @@ namespace BankWepApi.Repositories
         List<Customer> ReadCustomer(string name);
         Customer ReadCustomer(int id);
         Customer UpdateCustomer(Customer customer);
-        Customer DeleteCustomer(Customer customer);
+        void DeleteCustomer(int id);
     }
 }
