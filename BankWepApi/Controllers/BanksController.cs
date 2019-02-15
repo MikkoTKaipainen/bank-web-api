@@ -46,7 +46,7 @@ namespace BankWepApi.Controllers
         }
 
         // PUT: api/Banks/5
-        [HttpPut]
+        [HttpPut("{id}")]
         public ActionResult<Bank> Put(Bank bank, int id)
         {
             return new JsonResult(_bankService.UpdateBank(bank, id));

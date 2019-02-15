@@ -65,7 +65,8 @@ namespace BankWepApi.Repositories
     //UPDATE
         public Customer UpdateCustomer(Customer customer)
         {
-            _context.Update(customer);
+
+            _context.Customer.Update(customer);
             _context.SaveChanges();
             return customer;
         }

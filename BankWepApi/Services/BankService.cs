@@ -45,7 +45,7 @@ namespace BankWepApi.Services
 
         public Bank UpdateBank(Bank bank, int id)
         {
-            return _bankRepository.UpdateBank(bank,);
+            return _bankRepository.UpdateBank(bank);
         }
     }
 }

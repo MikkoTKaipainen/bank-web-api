@@ -56,7 +56,8 @@ namespace BankWepApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<Customer> Put(Customer customer, int id)
         {
-            return _customerService.UpdateCustomer(customer, id);
+            var updatedCustomer = _customerService.UpdateCustomer(customer, id);
+            return updatedCustomer;
         }
 
         // DELETE api/customers/5
