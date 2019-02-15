@@ -12,6 +12,7 @@ namespace BankWepApi.Services
         List<Account> ReadAccounts();
         Account ReadAccount(long id);
         Account UpdateAccount(long id, Account account);
+        Account UpdateBalance(long id, decimal amount);
         Account DeleteAccount(long id, Account account);
     }
 }

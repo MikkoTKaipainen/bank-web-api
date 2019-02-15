@@ -13,5 +13,6 @@ namespace BankWepApi.Repositories
         Account ReadAccount(long id);
         Account UpdateAccount(Account account);
         Account DeleteAccount(long id, Account account);
+        Account UpdateBalance(Account account);
     }
 }
