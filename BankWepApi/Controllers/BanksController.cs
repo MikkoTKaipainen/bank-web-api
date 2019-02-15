@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BankWepApi.Models;
 using BankWepApi.Repositories;
+using BankWepApi.Services;
 
 namespace BankWepApi.Controllers
 {
@@ -14,11 +15,11 @@ namespace BankWepApi.Controllers
     [ApiController]
     public class BanksController : ControllerBase
     {
-        private readonly IBankRepository _bankRepository;
+        private readonly IBankService _bankService;
 
-        public BanksController(IBankRepository bankRepository)
+        public BanksController(IBankService bankRepository)
         {
-            _bankRepository = bankRepository;
+            _bankService = bankRepository;
         }
 
       
@@ -26,15 +27,15 @@ namespace BankWepApi.Controllers
         [HttpGet]
         public ActionResult<List<Bank>> GetBanks()
         {
-            return new JsonResult(_bankRepository.Read());
+            return new JsonResult(_bankService.ReadBanks());
         }
 
         // GET: api/Banks/5
         [HttpGet("{id}")]
         public ActionResult<Bank> Get(int id)
         {
-            var bank = _bankRepository.Read(id);
-            return new JsonResult();
+            var bank = _bankService.ReadBank(id);
+            return new JsonResult(bank);
         }
 
         // PUT: api/Banks/5
