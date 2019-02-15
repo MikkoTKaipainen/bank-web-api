@@ -51,5 +51,12 @@ namespace BankWepApi.Repositories
             _context.SaveChanges();
             return account;
         }
+
+        public Account UpdateBalance(Account account)
+        {
+            _context.Update(account);
+            _context.SaveChanges();
+            return account;
+        }
     }
 }

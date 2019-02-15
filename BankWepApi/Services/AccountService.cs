@@ -43,5 +43,12 @@ namespace BankWepApi.Services
                 throw new Exception("Account not found");
             return _accountrepository.UpdateAccount(account);
         }
+
+        public Account UpdateBalance(long id, decimal amount)
+        {
+            Account account = ReadAccount(id);
+            account.Balance += amount;
+            return _accountrepository.UpdateBalance(account);
+        }
     }
 }
